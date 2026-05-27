@@ -1,0 +1,6 @@
+{
+  "name": "Amwal - Platform Wakaf Digital",
+  "description": "Amwal adalah platform wakaf digital yang aman, transparan, dan terpercaya untuk memudahkan umat dalam berwakaf, berinfaq, menghitung zakat, dan berqurban.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
