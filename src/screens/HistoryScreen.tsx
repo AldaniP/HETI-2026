@@ -1,24 +1,105 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Clock, CheckCircle2, XCircle } from 'lucide-react';
+import { Clock, CheckCircle2, XCircle } from 'lucide-react';
 import { ScreenRoute, HistoryItem } from '../types';
+
+export const DEFAULT_HISTORY_DATA: HistoryItem[] = [
+  { 
+    id: 'INV-2026-001', 
+    campaignTitle: 'Pembangunan Gedung Sekolah Yatim', 
+    category: 'Pendidikan',
+    nazhir: 'Yayasan Amanah & Dompet Dhuafa',
+    date: '25 Mei 2026 14:30', 
+    amount: 500000, 
+    status: 'Proses',
+    paymentMethod: 'QRIS Digital (GPN)',
+    wakifName: 'Ahmad Dani Prasetyo',
+    wakifEmail: 'aldaniprasetyo@gmail.com',
+    wakifPhone: '0812-3456-7890',
+    intendedFor: 'Keluarga Besar & Orang Tua Tercinta',
+    prayer: 'Semoga menjadi amal jariyah yang pahalanya mengalir tanpa henti dan membawa keselamatan dunia akhirat.',
+    refNumber: 'REF-20260525-88391',
+    vaNumber: '9880 1204 8819 2831',
+    fee: 0,
+    imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=200&q=80',
+    akadType: 'Wakaf Uang (Cash Waqf)',
+    notes: 'Sedang diverifikasi oleh sistem kliring Bank Syariah.'
+  },
+  { 
+    id: 'INV-2026-002', 
+    campaignTitle: 'Wakaf Alat Kesehatan Klinik Umat', 
+    category: 'Kesehatan',
+    nazhir: 'Dompet Dhuafa Indonesia',
+    date: '10 Apr 2026 09:15', 
+    amount: 1000000, 
+    status: 'Berhasil',
+    paymentMethod: 'BSI Virtual Account',
+    wakifName: 'Ahmad Dani Prasetyo',
+    wakifEmail: 'aldaniprasetyo@gmail.com',
+    wakifPhone: '0812-3456-7890',
+    intendedFor: 'Almarhum Ayahanda & Ibunda',
+    prayer: 'Ya Allah terimalah wakaf ini sebagai penerang kubur dan pahala berkelanjutan bagi kedua orang tua hamba.',
+    refNumber: 'REF-20260410-10928',
+    vaNumber: '9881 5521 9920 1192',
+    fee: 0,
+    imageUrl: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=200&q=80',
+    akadType: 'Wakaf Uang Sarana Kesehatan',
+    notes: 'Alat USG dan Medis telah diserahterimakan ke Klinik Umat.'
+  },
+  { 
+    id: 'INV-2025-098', 
+    campaignTitle: 'Wakaf Sumur Air Bersih', 
+    category: 'Produktif',
+    nazhir: 'Yayasan Amanah Wakaf',
+    date: '12 Des 2025 16:45', 
+    amount: 250000, 
+    status: 'Berhasil',
+    paymentMethod: 'GoPay Syariah',
+    wakifName: 'Ahmad Dani Prasetyo',
+    wakifEmail: 'aldaniprasetyo@gmail.com',
+    wakifPhone: '0812-3456-7890',
+    intendedFor: 'Pribadi & Seluruh Ummat Muslim',
+    prayer: 'Semoga air yang mengalir membawa berkah, kesehatan, dan menghapus dahaga saudara kita di daerah pelosok.',
+    refNumber: 'REF-20251212-77182',
+    vaNumber: '0812 3456 7890 (GoPay)',
+    fee: 0,
+    imageUrl: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=200&q=80',
+    akadType: 'Wakaf Air Bersih Produktif',
+    notes: 'Sumur bor telah beroperasi melayani 320 KK di pelosok.'
+  },
+  { 
+    id: 'INV-2025-075', 
+    campaignTitle: 'Wakaf Al-Quran Pelosok', 
+    category: 'Pendidikan',
+    nazhir: 'Lembaga Wakaf Al-Quran Nusantara',
+    date: '01 Nov 2025 10:00', 
+    amount: 150000, 
+    status: 'Gagal',
+    paymentMethod: 'BCA Virtual Account',
+    wakifName: 'Ahmad Dani Prasetyo',
+    wakifEmail: 'aldaniprasetyo@gmail.com',
+    wakifPhone: '0812-3456-7890',
+    intendedFor: 'Diri Sendiri',
+    prayer: 'Semoga setiap huruf yang dibaca santri pelosok mengalirkan pahala kebaikan.',
+    refNumber: 'REF-20251101-33819',
+    vaNumber: '8077 7192 8821 0019',
+    fee: 0,
+    imageUrl: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=200&q=80',
+    akadType: 'Wakaf Mushaf Al-Quran',
+    notes: 'Waktu pembayaran melebihi batas 24 jam.'
+  },
+];
 
 interface Props {
   navigate: (route: ScreenRoute) => void;
+  onSelectItem?: (item: HistoryItem) => void;
 }
 
-export function HistoryScreen({ navigate }: Props) {
+export function HistoryScreen({ navigate, onSelectItem }: Props) {
   const [activeTab, setActiveTab] = useState('Semua');
-  
-  const historyData: HistoryItem[] = [
-    { id: 'INV-2026-001', campaignTitle: 'Pembangunan Gedung Sekolah Yatim', date: '25 Mei 2026 14:30', amount: 500000, status: 'Proses' },
-    { id: 'INV-2026-002', campaignTitle: 'Wakaf Alat Kesehatan Klinik Umat', date: '10 Apr 2026 09:15', amount: 1000000, status: 'Berhasil' },
-    { id: 'INV-2025-098', campaignTitle: 'Wakaf Sumur Air Bersih', date: '12 Des 2025 16:45', amount: 250000, status: 'Berhasil' },
-    { id: 'INV-2025-075', campaignTitle: 'Wakaf Al-Quran Pelosok', date: '01 Nov 2025 10:00', amount: 150000, status: 'Gagal' },
-  ];
 
   const filteredHistory = activeTab === 'Semua' 
-    ? historyData 
-    : historyData.filter(item => item.status === activeTab);
+    ? DEFAULT_HISTORY_DATA 
+    : DEFAULT_HISTORY_DATA.filter(item => item.status === activeTab);
 
   const getStatusColor = (status: string) => {
     switch(status) {
@@ -36,6 +117,13 @@ export function HistoryScreen({ navigate }: Props) {
       case 'Gagal': return <XCircle size={16} className="text-red-600 mr-1" />;
       default: return null;
     }
+  };
+
+  const handleCardClick = (item: HistoryItem) => {
+    if (onSelectItem) {
+      onSelectItem(item);
+    }
+    navigate('history_detail');
   };
 
   return (
@@ -64,7 +152,11 @@ export function HistoryScreen({ navigate }: Props) {
 
       <div className="p-4 space-y-4">
         {filteredHistory.map((item) => (
-          <div key={item.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <div 
+            key={item.id} 
+            onClick={() => handleCardClick(item)}
+            className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 cursor-pointer hover:border-green-200 transition-colors"
+          >
             <div className="flex justify-between items-start mb-3">
               <div>
                 <span className="text-xs text-gray-500 mb-1 block">{item.date} • {item.id}</span>
@@ -95,3 +187,4 @@ export function HistoryScreen({ navigate }: Props) {
     </div>
   );
 }
+

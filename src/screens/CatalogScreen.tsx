@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Search, Filter, Check, X } from 'lucide-react';
+import { ArrowLeft, Search, Filter, Check, X, Sparkles, Bot } from 'lucide-react';
 import { ScreenRoute } from '../types';
 
 interface Props {
@@ -134,6 +134,28 @@ export function CatalogScreen({ navigate }: Props) {
 
       {/* Program items list */}
       <div className="p-4 space-y-4">
+        {/* AI Wakaf Consultant Card */}
+        <div 
+          onClick={() => navigate('ai_chat')}
+          className="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between cursor-pointer hover:shadow-md transition active:scale-98"
+        >
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 border border-white/20">
+              <Sparkles size={20} className="animate-pulse" />
+            </div>
+            <div>
+              <div className="flex items-center space-x-1.5">
+                <h3 className="font-extrabold text-xs text-white">Konsultan AI Wakaf</h3>
+                <span className="bg-amber-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">AI</span>
+              </div>
+              <p className="text-[10.5px] text-emerald-200 mt-0.5">Tanya fatwa wakaf uang, nishab, dan rekomendasi program</p>
+            </div>
+          </div>
+          <span className="text-[11px] font-bold text-emerald-200 bg-white/10 px-2.5 py-1 rounded-lg border border-white/15">
+            Konsultasi →
+          </span>
+        </div>
+
         {filtered.map((item) => (
           <div key={item.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex cursor-pointer hover:border-green-200 transition" onClick={() => navigate('wakaf_detail')}>
             <img 

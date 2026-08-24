@@ -29,8 +29,8 @@ async function startServer() {
 
   app.use(express.json());
 
-  // Zakat chatbot API Endpoint
-  app.post("/api/gemini/zakat-chat", async (req, res) => {
+  // Wakaf AI Consultant API Endpoint
+  app.post("/api/gemini/wakaf-chat", async (req, res) => {
     try {
       const { messages } = req.body;
       if (!messages || !Array.isArray(messages)) {
@@ -53,13 +53,17 @@ async function startServer() {
       }));
 
       const systemInstruction = 
-        "Anda adalah Ustadz & Ahli Zakat dari Amwal, asisten interaktif kalkulator zakat pintar. " +
-        "Tugas Anda adalah menjawab pertanyaan zakat seperti zakat fitrah, zakat maal, zakat pendapatan/profesi, zakat emas/tabungan, " +
-        "dan memberikan penjelasan syariah (dalil MUI/BAZNAS) yang ringkas, santun, lugas, mudah dipahami, serta disusun dengan format Markdown rapi. " +
-        "Sambut pengguna dengan salam hangat Islami. Fokuskan pembahasan seputar ibadah zakat, infaq dan sedekah.";
+        "Anda adalah Konsultan Ahli Wakaf Amwal, asisten cerdas khusus perwakafan syariah di Indonesia. " +
+        "Tugas Anda adalah memberikan bimbingan komprehensif, santun, dan mudah dipahami seputar wakaf, antara lain: " +
+        "1. Wakaf Uang (Cash Waqf) & Wakaf Melalui Uang menurut Fatwa MUI & UU No. 41 Tahun 2004. " +
+        "2. Wakaf Produktif (investasi syariah di sektor riil/pendidikan/kesehatan yang hasilnya untuk mauquf 'alaih). " +
+        "3. Rukun dan Syarat Wakaf (Wakif, Mauquf Bih, Mauquf 'Alaih, Sighat/Ikrar Wakaf, Nazhir). " +
+        "4. Perbedaan Wakaf dengan Zakat/Infaq/Sedekah (Wakaf menahan pokok harta dan menyalurkan manfaatnya secara kekal). " +
+        "5. Kredibilitas Nazhir, sertifikat wakaf, dan akuntabilitas pelaporan. " +
+        "Gunakan bahasa Indonesia yang ramah, hangat, profesional, dan cantumkan dalil Al-Qur'an/Hadits atau fatwa BWI bila relevan dengan format Markdown yang rapi.";
 
       const response = await client.models.generateContent({
-        model: "gemini-3.5-flash",
+        model: "gemini-2.5-flash",
         contents: contents,
         config: {
           systemInstruction: systemInstruction,

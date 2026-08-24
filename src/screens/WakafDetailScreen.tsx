@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Share2, ShieldCheck, MapPin, Users, Heart } from 'lucide-react';
+import { ArrowLeft, Share2, ShieldCheck, MapPin, Users, Heart, Sparkles } from 'lucide-react';
 import { ScreenRoute } from '../types';
 
 interface Props {
@@ -73,9 +73,28 @@ export function WakafDetailScreen({ navigate }: Props) {
             </div>
 
             <h3 className="font-bold text-lg text-gray-900 mb-2">Keterangan</h3>
-            <p className="text-sm text-gray-600 leading-relaxed text-justify mb-6">
+            <p className="text-sm text-gray-600 leading-relaxed text-justify mb-5">
                 Pondok Pesantren Al-Hidayah saat ini menampung lebih dari 500 santri yatim dan dhuafa. Kondisi asrama dan ruang kelas saat ini sudah sangat tidak layak dan overkapasitas. Melalui program wakaf ini, kita akan membangun gedung baru 3 lantai yang akan menjadi amal jariyah yang pahalanya tidak terputus...
             </p>
+
+            {/* AI Wakaf Assistant CTA */}
+            <div 
+              onClick={() => navigate('ai_chat')}
+              className="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 flex items-center justify-between mb-6 cursor-pointer hover:bg-emerald-100 transition"
+            >
+              <div className="flex items-center space-x-2.5">
+                <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+                  <Sparkles size={16} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xs text-emerald-900">Konsultasi AI Program Ini</h4>
+                  <p className="text-[10px] text-emerald-700">Tanya skema akad, transparansi dana & proyeksi jariyah</p>
+                </div>
+              </div>
+              <span className="text-[11px] font-bold text-emerald-800 bg-white px-2.5 py-1 rounded-lg border border-emerald-200 shadow-2xs">
+                Tanya AI →
+              </span>
+            </div>
 
             <h3 className="font-bold text-lg text-gray-900 mb-3">Profil Pengelola (Nazhir)</h3>
             <div className="flex items-center space-x-3 p-4 bg-white border border-gray-100 rounded-xl shadow-sm mb-6 cursor-pointer" onClick={() => navigate('nazhir')}>

@@ -4,6 +4,7 @@ export type ScreenRoute =
   | 'home' 
   | 'catalog' 
   | 'history' 
+  | 'history_detail'
   | 'edu_hub' 
   | 'edu_detail' 
   | 'wakaf_detail' 
@@ -13,7 +14,11 @@ export type ScreenRoute =
   | 'document'
   | 'payment_success'
   | 'notification'
+  | 'notification_detail'
   | 'setting'
+  | 'edit_profile'
+  | 'security'
+  | 'help_center'
   | 'ai_chat'
   | 'qurban'
   | 'zakat'
@@ -44,7 +49,40 @@ export interface EducationArticle {
 export interface HistoryItem {
   id: string;
   campaignTitle: string;
+  category?: string;
+  nazhir?: string;
   date: string;
   amount: number;
   status: 'Proses' | 'Berhasil' | 'Gagal';
+  paymentMethod?: string;
+  wakifName?: string;
+  wakifEmail?: string;
+  wakifPhone?: string;
+  intendedFor?: string;
+  prayer?: string;
+  refNumber?: string;
+  vaNumber?: string;
+  fee?: number;
+  imageUrl?: string;
+  akadType?: string;
+  notes?: string;
+}
+
+export interface NotificationItem {
+  id: number;
+  type: 'transaction' | 'update' | 'info';
+  title: string;
+  message: string;
+  time: string;
+  read: boolean;
+  fullContent?: {
+    date: string;
+    subtitle?: string;
+    description: string;
+    highlights?: Array<{ label: string; value: string }>;
+    image?: string;
+    actionLabel?: string;
+    actionRoute?: ScreenRoute;
+    badge?: string;
+  };
 }

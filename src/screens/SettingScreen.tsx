@@ -19,12 +19,18 @@ export function SettingScreen({ navigate }: Props) {
       <div className="mt-4">
         <h3 className="px-4 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Akun</h3>
         <div className="bg-white border-y border-gray-100">
-            <button className="w-full flex items-center p-4 border-b border-gray-100">
+            <button 
+                onClick={() => navigate('edit_profile')}
+                className="w-full flex items-center p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer"
+            >
                 <User size={20} className="text-gray-500 mr-3" />
                 <span className="flex-1 text-left text-sm font-medium text-gray-800">Ubah Profil</span>
                 <ArrowLeft size={16} className="text-gray-400 rotate-180" />
             </button>
-            <button className="w-full flex items-center p-4">
+            <button 
+                onClick={() => navigate('security')}
+                className="w-full flex items-center p-4 hover:bg-gray-50 transition cursor-pointer"
+            >
                 <Lock size={20} className="text-gray-500 mr-3" />
                 <span className="flex-1 text-left text-sm font-medium text-gray-800">Keamanan & Password</span>
                 <ArrowLeft size={16} className="text-gray-400 rotate-180" />
@@ -51,7 +57,10 @@ export function SettingScreen({ navigate }: Props) {
       <div className="mt-6">
         <h3 className="px-4 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Bantuan & Info</h3>
         <div className="bg-white border-y border-gray-100">
-            <button className="w-full flex items-center p-4 border-b border-gray-100">
+            <button 
+                onClick={() => navigate('help_center')}
+                className="w-full flex items-center p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer"
+            >
                 <CircleHelp size={20} className="text-gray-500 mr-3" />
                 <span className="flex-1 text-left text-sm font-medium text-gray-800">Pusat Bantuan</span>
                 <ArrowLeft size={16} className="text-gray-400 rotate-180" />
