@@ -9,17 +9,20 @@ import {
   ArrowRight,
   Coins,
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  Newspaper
 } from 'lucide-react';
 import { ScreenRoute } from '../types';
 import { getPoints, canCheckInToday, checkInDaily } from '../utils/points';
+import { NEWS_DATABASE } from '../data/newsData';
 
 interface Props {
   navigate: (route: ScreenRoute) => void;
   setSelectedArticleId?: (id: string) => void;
+  setSelectedNewsId?: (id: string) => void;
 }
 
-export function HomeScreen({ navigate, setSelectedArticleId }: Props) {
+export function HomeScreen({ navigate, setSelectedArticleId, setSelectedNewsId }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [points, setPoints] = useState<number>(0);
   const [showHasCheckIn, setShowHasCheckIn] = useState<boolean>(false);
@@ -203,47 +206,60 @@ export function HomeScreen({ navigate, setSelectedArticleId }: Props) {
         </button>
       </div>
 
+      {/* Section 1: Portal Berita */}
       <div className="mt-6">
         <div className="px-4 flex justify-between items-center mb-3">
-          <h3 className="font-bold text-gray-800">Berita & Edukasi</h3>
-          <button onClick={() => navigate('edu_hub')} className="text-sm text-green-600 font-medium flex items-center">Lihat Semua <ArrowRight size={14} className="ml-1"/></button>
+          <div className="flex items-center space-x-1.5">
+            <Newspaper size={18} className="text-emerald-700" />
+            <h3 className="font-extrabold text-sm text-gray-850">Portal Berita</h3>
+          </div>
+          <button 
+            onClick={() => navigate('news')} 
+            className="text-xs text-emerald-700 font-bold flex items-center hover:text-emerald-800 transition cursor-pointer"
+          >
+            Lihat Semua <ArrowRight size={13} className="ml-1"/>
+          </button>
         </div>
-        <div className="flex overflow-x-auto px-4 pb-4 space-x-4 hide-scrollbar">
-          {[
-            {
-              id: 'syariah_milenial',
-              title: 'Manajemen Keuangan Syariah untuk Milenial',
-              category: 'Finansial Pintar',
-              img: 'https://images.unsplash.com/photo-1579621970588-a3f5ece89634?auto=format&fit=crop&w=400&q=80'
-            },
-            {
-              id: 'wakaf_infaq_sedekah',
-              title: 'Perbedaan Mendasar Wakaf, Infaq, dan Sedekah',
-              category: 'Fiqih Muamalah',
-              img: 'https://images.unsplash.com/photo-1604594849809-dfedbc827105?auto=format&fit=crop&w=400&q=80'
-            }
-          ].map((item) => (
+        <div className="flex overflow-x-auto px-4 pb-2 space-x-3.5 hide-scrollbar">
+          {NEWS_DATABASE.slice(0, 3).map((item) => (
             <div 
               key={item.id} 
-              className="min-w-[240px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer hover:border-emerald-200 transition" 
+              className="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-2xs border border-gray-100 overflow-hidden cursor-pointer hover:border-emerald-200 transition duration-150 flex flex-col group" 
               onClick={() => {
-                if (setSelectedArticleId) {
-                  setSelectedArticleId(item.id);
+                if (setSelectedNewsId) {
+                  setSelectedNewsId(item.id);
                 }
-                navigate('edu_detail');
+                navigate('news_detail');
               }}
             >
-              <img src={item.img} referrerPolicy="no-referrer" className="w-full h-28 object-cover" />
-              <div className="p-3">
-                <span className="text-xs text-blue-600 font-medium mb-1 block">{item.category}</span>
-                <h4 className="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-2">{item.title}</h4>
+              <div className="relative h-28 w-full overflow-hidden">
+                <img 
+                  src={item.imageUrl} 
+                  referrerPolicy="no-referrer" 
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                />
+                <span className="absolute top-2 left-2 text-[9.5px] bg-emerald-900/85 backdrop-blur-xs text-emerald-100 px-2 py-0.5 rounded-full font-bold">
+                  {item.category}
+                </span>
+              </div>
+              <div className="p-3 flex-1 flex flex-col justify-between">
+                <div>
+                  <h4 className="font-bold text-xs text-gray-850 leading-snug line-clamp-2 group-hover:text-emerald-750 transition">
+                    {item.title}
+                  </h4>
+                </div>
+                <div className="flex items-center justify-between text-[10px] text-gray-400 mt-2 pt-2 border-t border-gray-50">
+                  <span>{item.date}</span>
+                  <span className="font-bold text-emerald-700">Baca Selengkapnya</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="mt-2">
+      <div className="mt-5">
         <div className="px-4 flex justify-between items-center mb-3">
           <h3 className="font-bold text-gray-800">Program Wakaf Pilihan</h3>
           <button onClick={() => navigate('catalog')} className="text-sm text-green-600 font-medium flex items-center">Lihat Semua <ArrowRight size={14} className="ml-1"/></button>

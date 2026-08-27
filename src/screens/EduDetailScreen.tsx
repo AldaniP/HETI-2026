@@ -242,13 +242,13 @@ export function EduDetailScreen({ navigate, articleId = 'syariah_milenial' }: Pr
       </div>
 
       {/* Tab Selector Segment */}
-      <div className="flex border-b border-gray-150 bg-white sticky top-[60px] z-10 shadow-3xs">
+      <div className="flex border-b border-slate-100 bg-white sticky top-[60px] z-10">
         <button 
           onClick={() => setActiveTab('article')}
           className={`flex-1 py-3 text-xs font-extrabold transition-all duration-200 border-b-2 flex items-center justify-center space-x-2 cursor-pointer ${
             activeTab === 'article'
-              ? 'border-emerald-700 text-emerald-850 bg-emerald-50/10'
-              : 'border-transparent text-gray-500 hover:text-gray-800'
+              ? 'border-emerald-600 text-emerald-800 bg-emerald-50/20'
+              : 'border-transparent text-gray-400 hover:text-gray-700'
           }`}
         >
           <BookOpen size={14} className={activeTab === 'article' ? 'text-emerald-700' : 'text-gray-400'} />
@@ -258,8 +258,8 @@ export function EduDetailScreen({ navigate, articleId = 'syariah_milenial' }: Pr
           onClick={() => setActiveTab('quiz')}
           className={`flex-1 py-3 text-xs font-extrabold transition-all duration-200 border-b-2 flex items-center justify-center space-x-2 cursor-pointer relative ${
             activeTab === 'quiz'
-              ? 'border-emerald-700 text-emerald-850 bg-emerald-50/10'
-              : 'border-transparent text-gray-500 hover:text-gray-800'
+              ? 'border-emerald-600 text-emerald-800 bg-emerald-50/20'
+              : 'border-transparent text-gray-400 hover:text-gray-700'
           }`}
         >
           <HelpCircle size={14} className={activeTab === 'quiz' ? 'text-emerald-700' : 'text-gray-400'} />
@@ -269,7 +269,7 @@ export function EduDetailScreen({ navigate, articleId = 'syariah_milenial' }: Pr
               {score}/{article.quiz.length}
             </span>
           ) : (
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0"></span>
+            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shrink-0"></span>
           )}
         </button>
       </div>
@@ -328,13 +328,13 @@ export function EduDetailScreen({ navigate, articleId = 'syariah_milenial' }: Pr
             </div>
 
             {/* CALL TO ACTION (CTA) to testing knowledge */}
-            <div className="mt-8 bg-gradient-to-br from-emerald-50 to-emerald-100/30 border border-emerald-150 p-4.5 rounded-2xl flex items-center justify-between shadow-2xs">
+            <div className="mt-8 bg-gradient-to-r from-emerald-50/90 via-emerald-50/60 to-teal-50/50 border border-emerald-100/70 p-4.5 rounded-2xl flex items-center justify-between shadow-xs">
               <div className="space-y-1 pr-3 flex-1">
-                <h4 className="text-xs font-black text-emerald-900 flex items-center">
-                  <Sparkles size={14} className="mr-1.5 text-amber-500 animate-pulse shrink-0" />
+                <h4 className="text-xs font-extrabold text-emerald-950 flex items-center tracking-tight">
+                  <Sparkles size={14} className="mr-1.5 text-amber-500 shrink-0" />
                   Uji Pemahaman Hukum Muamalah?
                 </h4>
-                <p className="text-[10.5px] text-gray-500 leading-normal">
+                <p className="text-[11px] text-slate-500 leading-relaxed">
                   Yuk selesaikan kuis interaktif singkat seputar materi di atas dan dapatkan 100 XP Berkah!
                 </p>
               </div>
@@ -347,7 +347,7 @@ export function EduDetailScreen({ navigate, articleId = 'syariah_milenial' }: Pr
                     mainContainer.scrollTo({ top: 0, behavior: 'smooth' });
                   }
                 }}
-                className="bg-emerald-800 hover:bg-emerald-950 text-white font-extrabold text-[10.5px] px-4 py-2.5 rounded-xl transition duration-200 shrink-0 cursor-pointer shadow-xs"
+                className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition duration-200 shrink-0 cursor-pointer shadow-xs hover:shadow-sm"
               >
                 Mulai Kuis
               </button>
@@ -378,189 +378,205 @@ export function EduDetailScreen({ navigate, articleId = 'syariah_milenial' }: Pr
           </div>
         </>
       ) : (
-        /* QUIZ TAB */
-        <div className="p-5 pb-28 bg-gray-50 flex-1 flex flex-col">
-          <div className="bg-gradient-to-br from-emerald-50/70 to-blue-50/20 border border-emerald-150 rounded-2xl p-5 shadow-xs relative overflow-hidden flex-1 flex flex-col justify-start">
-            {/* Subtle background decoration */}
-            <div className="absolute -right-2 -top-2 text-emerald-100 opacity-30 select-none">
-              <HelpCircle size={100} />
-            </div>
-
-            <div className="relative z-10 flex-grow">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-emerald-100/50">
-                <div className="flex items-center space-x-2">
-                  <HelpCircle className="text-emerald-700 animate-pulse animate-infinite" size={18} />
-                  <span className="text-[10px] bg-emerald-600 text-white font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                    Workplace Kuis
-                  </span>
+        /* CLEAN & MODERN QUIZ TAB */
+        <div className="p-4 pb-28 bg-slate-50/60 flex-1 flex flex-col space-y-4">
+          {/* Header Card */}
+          <div className="bg-white rounded-2xl p-4.5 border border-slate-100 shadow-xs">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center space-x-2">
+                <div className="w-7 h-7 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                  <HelpCircle size={16} />
                 </div>
-                <span className="text-[10px] text-emerald-800 font-extrabold flex items-center bg-white border border-emerald-100 px-2 py-1 rounded-lg">
-                  <Sparkles size={11} className="mr-1 text-emerald-600" /> +100 XP Berkah
+                <span className="text-[11px] bg-emerald-50 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                  Kuis Interaktif
                 </span>
               </div>
-
-              <span className="text-[11px] text-emerald-800 font-bold block bg-emerald-50 border border-emerald-100/40 px-3 py-1.5 rounded-lg mb-1.5">
-                Topik: {article.title}
+              <span className="text-[11px] text-amber-800 font-extrabold flex items-center bg-amber-50 border border-amber-200/60 px-2.5 py-1 rounded-full shadow-2xs">
+                <Sparkles size={12} className="mr-1 text-amber-600" /> +100 XP Berkah
               </span>
-              <h3 className="text-xs font-black text-gray-800 uppercase tracking-wide mt-2">
-                Uji Pemahaman Syariah Anda
-              </h3>
-              <p className="text-[11px] text-gray-500 mt-1 mb-5">
-                Ayo jawab kuis evaluasi singkat di bawah ini secara saksama berpatokan dari fikih yang telah dibaca sebelumnya.
-              </p>
+            </div>
 
-              {/* Questions list */}
-              <div className="space-y-6">
-                {article.quiz.map((q, qIdx) => {
-                  const isSelected = selectedAnswers[qIdx] !== undefined;
-                  const selectedOption = selectedAnswers[qIdx];
+            <div className="bg-emerald-50/60 border border-emerald-100/70 rounded-xl px-3.5 py-2 mb-2.5">
+              <span className="text-[11px] text-emerald-900 font-semibold block leading-tight">
+                Topik: <span className="font-bold">{article.title}</span>
+              </span>
+            </div>
 
-                  return (
-                    <div key={qIdx} className="bg-white/95 border border-emerald-50 p-4 rounded-xl shadow-3xs">
-                      <div className="flex items-start space-x-2">
-                        <span className="font-extrabold text-[11px] text-emerald-700 bg-emerald-50 w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                          {qIdx + 1}
-                        </span>
-                        <p className="text-xs font-bold text-gray-850 leading-relaxed">
-                          {q.question}
-                        </p>
-                      </div>
+            <h3 className="text-sm font-extrabold text-slate-900 tracking-tight">
+              Uji Pemahaman Syariah Anda
+            </h3>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              Jawab kuis evaluasi singkat di bawah ini secara saksama berdasarkan materi yang telah dibaca sebelumnya.
+            </p>
+          </div>
 
-                      {/* Options list */}
-                      <div className="mt-3.5 space-y-2">
-                        {q.options.map((option, oIdx) => {
-                          const isCurrentSelected = selectedOption === oIdx;
-                          const isCorrect = q.correctIndex === oIdx;
-                          
-                          // Option Styles based on state
-                          let optionStyle = "border-gray-150 hover:bg-gray-50";
-                          let checkIcon = null;
+          {/* Questions list */}
+          <div className="space-y-4">
+            {article.quiz.map((q, qIdx) => {
+              const isSelected = selectedAnswers[qIdx] !== undefined;
+              const selectedOption = selectedAnswers[qIdx];
 
-                          if (submitted) {
-                            if (isCorrect) {
-                              optionStyle = "bg-emerald-50/80 border-emerald-300 text-emerald-900";
-                              checkIcon = <CheckCircle2 size={13} className="text-emerald-600 shrink-0 ml-auto" />;
-                            } else if (isCurrentSelected && !isCorrect) {
-                              optionStyle = "bg-rose-50 border-rose-300 text-rose-900";
-                              checkIcon = <XCircle size={13} className="text-rose-600 shrink-0 ml-auto" />;
-                            } else {
-                              optionStyle = "border-gray-100 opacity-60 bg-gray-50/50 cursor-not-allowed";
-                            }
-                          } else {
-                            // Normal select states
-                            if (isCurrentSelected) {
-                              optionStyle = "bg-emerald-900 text-white border-emerald-950 shadow-xs";
-                            } else {
-                              optionStyle = "border-gray-200 bg-white text-gray-700 hover:border-emerald-500 hover:bg-emerald-50/30";
-                            }
-                          }
-
-                          return (
-                            <button
-                              key={oIdx}
-                              type="button"
-                              disabled={submitted}
-                              onClick={() => handleSelectOption(qIdx, oIdx)}
-                              className={`w-full flex items-center p-3 rounded-lg text-[11px] font-bold text-left border transition-all duration-200 ${optionStyle}`}
-                            >
-                              <span className={`w-4 h-4 rounded-full border flex items-center justify-center mr-3 shrink-0 ${
-                                isCurrentSelected && !submitted 
-                                  ? 'border-amber-300 bg-emerald-800' 
-                                  : 'border-gray-300'
-                              }`}>
-                                <span className={`w-1.5 h-1.5 rounded-full ${
-                                  isCurrentSelected ? (submitted ? 'bg-red-500' : 'bg-transparent') : 'bg-transparent'
-                                }`}></span>
-                              </span>
-                              <span className="flex-1 leading-normal">{option}</span>
-                              {checkIcon}
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      {/* Explanation text block */}
-                      {submitted && (
-                        <div className="mt-3 bg-gray-50/90 border border-gray-150 p-3 rounded-lg text-[10px] text-gray-600 flex items-start space-x-1.5 leading-relaxed">
-                          <AlertCircle size={12} className="text-amber-600 shrink-0 mt-0.5" />
-                          <div>
-                            <span className="font-extrabold text-gray-800 block mb-0.5">Penjelasan Khazanah:</span>
-                            {q.explanation}
-                          </div>
-                        </div>
-                      )}
+              return (
+                <div key={qIdx} className="bg-white border border-slate-100 p-4.5 rounded-2xl shadow-xs transition duration-200">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <div className="flex items-center space-x-2">
+                      <span className="w-6 h-6 rounded-lg bg-emerald-600 text-white font-extrabold text-[11px] flex items-center justify-center shadow-xs">
+                        {qIdx + 1}
+                      </span>
+                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                        Pertanyaan {qIdx + 1} dari {article.quiz.length}
+                      </span>
                     </div>
-                  );
-                })}
+                    {submitted && (
+                      <span className={`text-[10.5px] font-bold px-2 py-0.5 rounded-md ${
+                        selectedAnswers[qIdx] === q.correctIndex 
+                          ? 'bg-emerald-100 text-emerald-800' 
+                          : 'bg-rose-100 text-rose-800'
+                      }`}>
+                        {selectedAnswers[qIdx] === q.correctIndex ? 'Benar (+50 XP)' : 'Kurang Tepat'}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-xs md:text-sm font-bold text-slate-850 leading-snug mb-3.5">
+                    {q.question}
+                  </p>
+
+                  {/* Options list */}
+                  <div className="space-y-2.5">
+                    {q.options.map((option, oIdx) => {
+                      const isCurrentSelected = selectedOption === oIdx;
+                      const isCorrect = q.correctIndex === oIdx;
+                      
+                      // Modern option styles
+                      let optionStyle = "border-slate-200/80 bg-slate-50/60 text-slate-700 hover:bg-emerald-50/40 hover:border-emerald-300";
+                      let radioStyle = "border-slate-300 bg-white";
+                      let checkIcon = null;
+
+                      if (submitted) {
+                        if (isCorrect) {
+                          optionStyle = "bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold ring-1 ring-emerald-500/20";
+                          radioStyle = "border-emerald-600 bg-emerald-600 text-white";
+                          checkIcon = <CheckCircle2 size={16} className="text-emerald-600 shrink-0 ml-auto" />;
+                        } else if (isCurrentSelected && !isCorrect) {
+                          optionStyle = "bg-rose-50 border-rose-400 text-rose-950 font-semibold ring-1 ring-rose-400/20";
+                          radioStyle = "border-rose-500 bg-rose-500 text-white";
+                          checkIcon = <XCircle size={16} className="text-rose-600 shrink-0 ml-auto" />;
+                        } else {
+                          optionStyle = "border-slate-100 bg-slate-50/30 text-slate-400 opacity-60 cursor-not-allowed";
+                          radioStyle = "border-slate-200 bg-transparent";
+                        }
+                      } else {
+                        if (isCurrentSelected) {
+                          optionStyle = "bg-emerald-50/70 border-emerald-600 text-emerald-950 font-semibold shadow-2xs ring-1 ring-emerald-600/20";
+                          radioStyle = "border-emerald-600 bg-emerald-600";
+                        }
+                      }
+
+                      return (
+                        <button
+                          key={oIdx}
+                          type="button"
+                          disabled={submitted}
+                          onClick={() => handleSelectOption(qIdx, oIdx)}
+                          className={`w-full flex items-center p-3.5 rounded-xl text-xs text-left border transition-all duration-200 cursor-pointer ${optionStyle}`}
+                        >
+                          <span className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center mr-3 shrink-0 transition-colors ${radioStyle}`}>
+                            {isCurrentSelected && !submitted && (
+                              <span className="w-2 h-2 rounded-full bg-white"></span>
+                            )}
+                            {submitted && isCorrect && (
+                              <span className="w-2 h-2 rounded-full bg-white"></span>
+                            )}
+                          </span>
+                          <span className="flex-1 leading-normal">{option}</span>
+                          {checkIcon}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Explanation text block */}
+                  {submitted && (
+                    <div className="mt-3.5 bg-emerald-50/70 border border-emerald-100/90 p-3.5 rounded-xl text-[11px] text-emerald-950 flex items-start space-x-2 leading-relaxed">
+                      <AlertCircle size={14} className="text-emerald-700 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-extrabold text-emerald-900 block mb-0.5">Penjelasan Fikih & Hukum:</span>
+                        {q.explanation}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Submit / Reward Results block */}
+          {!submitted ? (
+            <button
+              type="button"
+              disabled={!answeredAll}
+              onClick={handleSubmitQuiz}
+              className={`w-full mt-2 py-3.5 px-4 rounded-xl text-xs font-extrabold shadow-xs flex items-center justify-center space-x-2 transition cursor-pointer ${
+                answeredAll 
+                  ? 'bg-emerald-700 hover:bg-emerald-800 text-white shadow-emerald-700/20' 
+                  : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+              }`}
+            >
+              <span>Periksa Jawaban Kuis</span>
+            </button>
+          ) : (
+            <div className="mt-2 bg-white p-5 rounded-2xl border border-emerald-100 text-center space-y-4 shadow-xs">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto text-emerald-700 shadow-2xs">
+                {score === article.quiz.length ? <Award size={30} className="text-amber-500 animate-bounce" /> : <Sparkles size={26} className="text-emerald-600" />}
               </div>
 
-              {/* Submit / Reward Results block */}
-              {!submitted ? (
+              <div>
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full inline-block mb-1.5">
+                  Hasil Evaluasi Belajar
+                </span>
+                <div className="text-xl font-extrabold text-slate-900 tracking-tight">
+                  Skor: {score} dari {article.quiz.length} Benar
+                </div>
+                <p className="text-xs text-slate-500 max-w-xs mx-auto leading-relaxed mt-1.5">
+                  {score === article.quiz.length 
+                    ? "Masyaallah, luar biasa! Anda sudah memahami pokok materi ini dengan sempurna." 
+                    : "Alhamdulillah kuis telah diselesaikan. Silakan baca ulang materi jika ingin memperdalam pemahaman."
+                  }
+                </p>
+              </div>
+
+              <div className="flex flex-col space-y-2 max-w-xs mx-auto pt-1">
                 <button
                   type="button"
-                  disabled={!answeredAll}
-                  onClick={handleSubmitQuiz}
-                  className={`w-full mt-6 py-3 px-4 rounded-xl text-xs font-extrabold shadow-sm flex items-center justify-center space-x-1.5 transition cursor-pointer ${
-                    answeredAll 
-                      ? 'bg-emerald-800 hover:bg-emerald-950 text-white hover:shadow-md' 
-                      : 'bg-gray-150 text-gray-400 border border-gray-200 cursor-not-allowed'
-                  }`}
+                  onClick={() => {
+                    setActiveTab('article');
+                    const mainContainer = document.querySelector('.overflow-y-auto');
+                    if (mainContainer) {
+                      mainContainer.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
+                  className="w-full flex items-center justify-center space-x-1.5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-xs font-bold text-white rounded-xl shadow-xs transition cursor-pointer"
                 >
-                  <span>Periksa Jawaban Kuis</span>
+                  <BookOpen size={13} />
+                  <span>Baca Ulang Materi</span>
                 </button>
-              ) : (
-                <div className="mt-6 bg-white p-5 rounded-xl border border-emerald-250 text-center space-y-3.5 shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto text-emerald-700">
-                    {score === article.quiz.length ? <Award size={26} className="text-amber-500 animate-bounce" /> : <Sparkles size={24} className="text-emerald-600" />}
-                  </div>
-
-                  <div>
-                    <h4 className="font-black text-gray-800 text-xs text-center">Evaluasi Pelajaran</h4>
-                    <div className="text-[17px] font-black tracking-wide text-emerald-850 mt-1 mb-1.5 text-center">
-                      Hasil: {score} dari {article.quiz.length} Benar!
-                    </div>
-                    <p className="text-[11px] text-gray-500 max-w-xs mx-auto leading-relaxed text-center">
-                      {score === article.quiz.length 
-                        ? "Masyaallah, luar biasa! Anda sudah memahami pokok keilmuan materi ini dengan sempurna." 
-                        : "Alhamdulillah kuis telah diselesaikan. Silakan klik tombol di bawah untuk membaca ulang isi artikel di Tab Materi."
-                      }
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col space-y-2 max-w-xs mx-auto pt-1">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setActiveTab('article');
-                        const mainContainer = document.querySelector('.overflow-y-auto');
-                        if (mainContainer) {
-                          mainContainer.scrollTo({ top: 0, behavior: 'smooth' });
-                        }
-                      }}
-                      className="w-full flex items-center justify-center space-x-1 py-2 bg-emerald-800 hover:bg-emerald-900 text-[10.5px] font-black text-white rounded-xl shadow-xs transition cursor-pointer"
-                    >
-                      <BookOpen size={11} className="mr-1" />
-                      <span>Baca Ulang Materi</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleResetQuiz}
-                      className="w-full flex items-center justify-center space-x-1 py-1.5 bg-gray-100 hover:bg-gray-200 text-[10px] font-bold text-gray-600 rounded-lg transition cursor-pointer"
-                    >
-                      <RotateCw size={10} className="mr-1 shadow-3xs" />
-                      <span>Ulangi Kuis Sekarang</span>
-                    </button>
-                  </div>
-                </div>
-              )}
+                <button
+                  type="button"
+                  onClick={handleResetQuiz}
+                  className="w-full flex items-center justify-center space-x-1.5 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 rounded-xl transition cursor-pointer"
+                >
+                  <RotateCw size={12} />
+                  <span>Ulangi Kuis</span>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
       {/* Floating Bottom action bar */}
-      <div className="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-200 px-4 py-3.5 flex items-center justify-between z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 w-full max-w-md bg-white border-t border-slate-100 px-4 py-3.5 flex items-center justify-between z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
         <button 
           onClick={handleLike}
           className={`flex items-center font-bold text-xs bg-gray-50 px-4 py-2.5 rounded-full border border-gray-100 transition duration-200 cursor-pointer ${

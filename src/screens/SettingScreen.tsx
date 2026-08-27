@@ -32,7 +32,7 @@ export function SettingScreen({ navigate }: Props) {
                 className="w-full flex items-center p-4 hover:bg-gray-50 transition cursor-pointer"
             >
                 <Lock size={20} className="text-gray-500 mr-3" />
-                <span className="flex-1 text-left text-sm font-medium text-gray-800">Keamanan & Password</span>
+                <span className="flex-1 text-left text-sm font-medium text-gray-800">Ubah Password</span>
                 <ArrowLeft size={16} className="text-gray-400 rotate-180" />
             </button>
         </div>

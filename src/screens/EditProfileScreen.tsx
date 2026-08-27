@@ -26,7 +26,7 @@ export function EditProfileScreen({ navigate }: Props) {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto bg-gray-50 flex flex-col h-full relative font-sans">
+    <div className="flex-1 overflow-y-auto bg-white flex flex-col h-full relative font-sans">
       {/* Header */}
       <div className="bg-white px-4 py-3.5 flex items-center sticky top-0 z-20 border-b border-gray-100 shadow-xs">
         <button 
@@ -38,9 +38,9 @@ export function EditProfileScreen({ navigate }: Props) {
         <h1 className="font-extrabold text-base text-gray-850">Ubah Profil</h1>
       </div>
 
-      <form onSubmit={handleSave} className="p-4 space-y-4">
+      <form onSubmit={handleSave} className="px-5 py-4 space-y-6">
         {/* Profile Avatar Card */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-150 shadow-xs flex flex-col items-center text-center">
+        <div className="bg-gray-50/80 rounded-2xl p-5 shadow-xs flex flex-col items-center text-center">
           <div className="relative mb-3">
             <img 
               src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" 
@@ -57,26 +57,26 @@ export function EditProfileScreen({ navigate }: Props) {
             </button>
           </div>
           <h2 className="font-bold text-sm text-gray-900">{fullName}</h2>
-          <div className="mt-1 inline-flex items-center bg-emerald-50 text-emerald-700 px-2.5 py-0.5 text-[10.5px] font-bold rounded-full border border-emerald-200">
-            <ShieldCheck size={12} className="mr-1 text-emerald-600" />
+          <div className="mt-1.5 inline-flex items-center bg-emerald-100/70 text-emerald-800 px-3 py-0.5 text-[11px] font-bold rounded-full">
+            <ShieldCheck size={13} className="mr-1 text-emerald-600" />
             Terverifikasi KYC BWI
           </div>
         </div>
 
-        {/* Form Fields Card */}
-        <div className="bg-white rounded-2xl p-4 border border-gray-150 shadow-xs space-y-3.5">
-          <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Informasi Pribadi</h3>
+        {/* Form Fields Section */}
+        <div className="space-y-4">
+          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Informasi Pribadi</h3>
 
           {/* Nama Lengkap */}
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Nama Lengkap Sesuai KTP</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1.5">Nama Lengkap Sesuai KTP</label>
             <div className="relative">
               <input 
                 type="text" 
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="w-full bg-gray-50 rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 outline-none transition"
               />
               <User size={16} className="absolute right-3.5 top-3 text-gray-400" />
             </div>
@@ -84,14 +84,14 @@ export function EditProfileScreen({ navigate }: Props) {
 
           {/* Email */}
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Alamat Email</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1.5">Alamat Email</label>
             <div className="relative">
               <input 
                 type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="w-full bg-gray-50 rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 outline-none transition"
               />
               <Mail size={16} className="absolute right-3.5 top-3 text-gray-400" />
             </div>
@@ -100,14 +100,14 @@ export function EditProfileScreen({ navigate }: Props) {
 
           {/* Nomor Telepon */}
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Nomor Telepon / WhatsApp</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1.5">Nomor Telepon / WhatsApp</label>
             <div className="relative">
               <input 
                 type="tel" 
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="w-full bg-gray-50 rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 outline-none transition"
               />
               <Phone size={16} className="absolute right-3.5 top-3 text-gray-400" />
             </div>
@@ -115,8 +115,8 @@ export function EditProfileScreen({ navigate }: Props) {
 
           {/* NIK / KTP (Readonly verified) */}
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Nomor Induk Kependudukan (NIK)</label>
-            <div className="flex items-center justify-between bg-gray-100 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-gray-600 font-mono">
+            <label className="block text-xs font-bold text-gray-700 mb-1.5">Nomor Induk Kependudukan (NIK)</label>
+            <div className="flex items-center justify-between bg-gray-100/80 rounded-xl px-3.5 py-2.5 text-xs text-gray-600 font-mono">
               <span>{nik}</span>
               <span className="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded">Tervalidasi</span>
             </div>
@@ -126,36 +126,36 @@ export function EditProfileScreen({ navigate }: Props) {
           {/* Jenis Kelamin & Tanggal Lahir */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">Jenis Kelamin</label>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">Jenis Kelamin</label>
               <select 
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="w-full bg-gray-50 rounded-xl px-3 py-2.5 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 outline-none transition cursor-pointer"
               >
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">Tanggal Lahir</label>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5">Tanggal Lahir</label>
               <input 
                 type="date"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="w-full bg-gray-50 rounded-xl px-3 py-2 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 outline-none transition"
               />
             </div>
           </div>
 
           {/* Alamat Domisili */}
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Alamat Domisili</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1.5">Alamat Domisili</label>
             <div className="relative">
               <textarea 
                 rows={2}
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="w-full bg-gray-50 rounded-xl px-3.5 py-2 text-xs text-gray-800 font-medium focus:bg-white focus:ring-1 focus:ring-emerald-500 outline-none transition"
               />
             </div>
           </div>
@@ -163,7 +163,7 @@ export function EditProfileScreen({ navigate }: Props) {
 
         {/* Success Alert */}
         {isSaved && (
-          <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 p-3 rounded-xl flex items-center space-x-2 text-xs font-bold">
+          <div className="bg-emerald-50 text-emerald-800 p-3 rounded-xl flex items-center space-x-2 text-xs font-bold shadow-xs">
             <CheckCircle2 size={18} className="text-emerald-600 shrink-0" />
             <span>Perubahan profil berhasil disimpan! Mengalihkan...</span>
           </div>
@@ -172,7 +172,7 @@ export function EditProfileScreen({ navigate }: Props) {
         {/* Submit Button */}
         <button 
           type="submit"
-          className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-bold py-3.5 rounded-xl shadow-md transition cursor-pointer flex items-center justify-center space-x-2"
+          className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-bold py-3.5 rounded-xl shadow-sm transition cursor-pointer flex items-center justify-center space-x-2"
         >
           <Save size={16} />
           <span>Simpan Perubahan</span>

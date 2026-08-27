@@ -92,19 +92,19 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
   const statusInfo = getStatusBadge();
 
   return (
-    <div className="flex-1 overflow-y-auto pb-24 bg-gray-50 flex flex-col h-full relative font-sans">
+    <div className="flex-1 overflow-y-auto pb-28 bg-white flex flex-col h-full relative font-sans">
       {/* Sticky Header */}
-      <div className="bg-white px-4 py-4 flex items-center sticky top-0 z-20 border-b border-gray-150 shadow-xs justify-between">
+      <div className="bg-white px-4 py-3.5 flex items-center sticky top-0 z-20 border-b border-gray-100 shadow-xs justify-between">
         <div className="flex items-center space-x-3">
           <button 
             onClick={() => navigate('history')} 
-            className="p-1.5 -ml-1.5 text-gray-700 hover:text-emerald-700 rounded-full hover:bg-gray-100 transition"
+            className="p-1.5 -ml-1.5 text-gray-700 hover:text-emerald-700 rounded-full hover:bg-gray-100 transition cursor-pointer"
           >
             <ArrowLeft size={22} />
           </button>
           <div>
             <h1 className="font-extrabold text-base text-gray-900 leading-tight">Rincian Transaksi</h1>
-            <p className="text-[10.5px] text-gray-500 font-medium">{item.id}</p>
+            <p className="text-[10.5px] text-gray-400 font-medium">{item.id}</p>
           </div>
         </div>
 
@@ -112,7 +112,7 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
           <button 
             onClick={handleShare}
             title="Bagikan"
-            className="p-2 text-gray-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition"
+            className="p-2 text-gray-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition cursor-pointer"
           >
             {copiedField === 'share' ? <Check size={18} className="text-emerald-600" /> : <Share2 size={18} />}
           </button>
@@ -120,30 +120,30 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
             onClick={handleDownloadPDF}
             disabled={isDownloading}
             title="Unduh PDF"
-            className="p-2 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition border border-emerald-200 flex items-center space-x-1"
+            className="p-2 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition flex items-center space-x-1 cursor-pointer"
           >
             <Download size={18} className={isDownloading ? 'animate-bounce' : ''} />
           </button>
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="p-4 space-y-4">
+      {/* Main Single-Page Content */}
+      <div className="px-5 py-4 space-y-6">
         
-        {/* Status Card Banner */}
-        <div className={`p-4 rounded-2xl border ${statusInfo.bg} shadow-xs`}>
+        {/* Status & Confirmation Banner */}
+        <div className={`p-4 rounded-2xl ${statusInfo.bg.replace(/border[^\s]*/g, '')} bg-emerald-50/70`}>
           <div className="flex items-start space-x-3">
-            <div className="p-2 rounded-xl bg-white/80 border border-current/20 shrink-0">
+            <div className="p-2 rounded-xl bg-white text-emerald-600 shadow-2xs shrink-0">
               {statusInfo.icon}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
-                <span className="font-black text-xs uppercase tracking-wider">{statusInfo.title}</span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/80 border border-current/20">
+                <span className="font-bold text-xs uppercase tracking-wider text-emerald-950">{statusInfo.title}</span>
+                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                   {item.status}
                 </span>
               </div>
-              <p className="text-xs opacity-90 font-medium leading-relaxed mt-1">{statusInfo.desc}</p>
+              <p className="text-xs text-emerald-800/90 font-medium leading-relaxed mt-1">{statusInfo.desc}</p>
             </div>
           </div>
 
@@ -155,46 +155,9 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
           )}
         </div>
 
-        {/* Primary Action Button: Download PDF & Certificate Preview */}
-        <div className="bg-white rounded-2xl border border-gray-150 p-4 shadow-xs space-y-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600">
-                <FileText size={18} />
-              </div>
-              <div>
-                <h3 className="font-extrabold text-xs text-gray-800">Dokumen Kuitansi & Sertifikat</h3>
-                <p className="text-[10px] text-gray-400 font-medium">Format PDF Resmi • Bukti Sah BWI</p>
-              </div>
-            </div>
-            <span className="text-[10px] font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full flex items-center">
-              <ShieldCheck size={12} className="mr-1" /> Terverifikasi
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2 pt-1">
-            <button
-              onClick={handleDownloadPDF}
-              disabled={isDownloading}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-xs transition active:scale-[0.98] cursor-pointer"
-            >
-              <Download size={15} />
-              <span>{isDownloading ? 'Membuat PDF...' : 'Unduh PDF'}</span>
-            </button>
-
-            <button
-              onClick={() => setShowCertificateModal(true)}
-              className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 border border-emerald-200/80 transition active:scale-[0.98] cursor-pointer"
-            >
-              <Eye size={15} />
-              <span>Lihat Kuitansi</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Nominal Highlight Card */}
+        {/* Nominal Section */}
         <div className="bg-gradient-to-br from-emerald-800 to-teal-900 rounded-2xl p-5 text-white shadow-sm relative overflow-hidden">
-          <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-white/5 rounded-full pointer-events-none"></div>
+          <div className="absolute -right-6 -bottom-6 w-36 h-36 bg-white/5 rounded-full pointer-events-none"></div>
           <div className="relative z-10 flex justify-between items-end">
             <div>
               <span className="text-[11px] text-emerald-200 font-semibold uppercase tracking-wider block mb-1">
@@ -216,24 +179,61 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
           </div>
         </div>
 
-        {/* Program & Nazhir Card */}
-        <div className="bg-white rounded-2xl border border-gray-150 p-4 shadow-xs space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-gray-100">
-            <span className="text-[10.5px] font-extrabold text-gray-400 uppercase tracking-wide">Program Wakaf</span>
-            <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+        {/* Quick Documents & Download Action */}
+        <div className="bg-gray-50/80 rounded-2xl p-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2.5">
+              <div className="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center text-rose-600 shadow-2xs">
+                <FileText size={18} />
+              </div>
+              <div>
+                <h3 className="font-extrabold text-xs text-gray-800">Dokumen Kuitansi & Sertifikat</h3>
+                <p className="text-[10.5px] text-gray-400 font-medium">Format PDF Resmi • Bukti Sah BWI</p>
+              </div>
+            </div>
+            <span className="text-[10px] font-extrabold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full flex items-center">
+              <ShieldCheck size={12} className="mr-1" /> Terverifikasi
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              onClick={handleDownloadPDF}
+              disabled={isDownloading}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-xs transition active:scale-[0.98] cursor-pointer"
+            >
+              <Download size={15} />
+              <span>{isDownloading ? 'Membuat PDF...' : 'Unduh PDF'}</span>
+            </button>
+
+            <button
+              onClick={() => setShowCertificateModal(true)}
+              className="w-full bg-white hover:bg-gray-100 text-emerald-850 font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-2xs transition active:scale-[0.98] cursor-pointer"
+            >
+              <Eye size={15} />
+              <span>Lihat Kuitansi</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Program Wakaf Section */}
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider">Program Wakaf</span>
+            <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full">
               {item.category || 'Sosial & Dakwah'}
             </span>
           </div>
 
-          <div className="flex items-start space-x-3.5">
+          <div className="flex items-start space-x-3.5 bg-gray-50/70 p-3.5 rounded-2xl">
             <img 
               src={item.imageUrl || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=200&q=80"}
               alt={item.campaignTitle}
               referrerPolicy="no-referrer"
-              className="w-16 h-16 rounded-xl object-cover border border-gray-100 shrink-0"
+              className="w-16 h-16 rounded-xl object-cover shadow-2xs shrink-0"
             />
             <div className="flex-1 min-w-0">
-              <h3 className="font-extrabold text-sm text-gray-850 leading-snug mb-1">
+              <h3 className="font-extrabold text-sm text-gray-900 leading-snug mb-1">
                 {item.campaignTitle}
               </h3>
               <div className="flex items-center text-xs text-gray-500 font-medium">
@@ -243,10 +243,10 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
             </div>
           </div>
 
-          <div className="pt-2 flex justify-end">
+          <div className="flex justify-end">
             <button 
               onClick={() => navigate('wakaf_detail')}
-              className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center space-x-1"
+              className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center space-x-1 cursor-pointer py-1"
             >
               <span>Lihat Detail Program</span>
               <ExternalLink size={12} />
@@ -254,21 +254,21 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
           </div>
         </div>
 
-        {/* Payment Breakdown & Bank Details */}
-        <div className="bg-white rounded-2xl border border-gray-150 p-4 shadow-xs space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-gray-100">
-            <h3 className="font-extrabold text-xs text-gray-800 uppercase tracking-wide">Rincian Pembayaran</h3>
+        {/* Payment Breakdown Section */}
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between pb-1 border-b border-gray-100">
+            <h3 className="font-extrabold text-xs text-gray-800 uppercase tracking-wider">Rincian Pembayaran</h3>
             <span className="text-[10px] text-gray-400 font-bold">100% Syariah</span>
           </div>
 
           <div className="space-y-2.5 text-xs">
-            <div className="flex justify-between items-center py-0.5">
+            <div className="flex justify-between items-center py-1">
               <span className="text-gray-500 font-medium">Nomor Transaksi</span>
               <div className="flex items-center space-x-1.5">
                 <span className="font-bold text-gray-800 font-mono">{item.id}</span>
                 <button 
                   onClick={() => handleCopy(item.id, 'invoice')} 
-                  className="text-gray-400 hover:text-emerald-700 p-0.5"
+                  className="text-gray-400 hover:text-emerald-700 p-0.5 cursor-pointer"
                   title="Salin No Transaksi"
                 >
                   {copiedField === 'invoice' ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
@@ -276,13 +276,13 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
               </div>
             </div>
 
-            <div className="flex justify-between items-center py-0.5">
+            <div className="flex justify-between items-center py-1">
               <span className="text-gray-500 font-medium">No. Referensi Bank</span>
               <div className="flex items-center space-x-1.5">
                 <span className="font-bold text-gray-700 font-mono text-[11px]">{item.refNumber || 'REF-883912048'}</span>
                 <button 
                   onClick={() => handleCopy(item.refNumber || 'REF-883912048', 'ref')} 
-                  className="text-gray-400 hover:text-emerald-700 p-0.5"
+                  className="text-gray-400 hover:text-emerald-700 p-0.5 cursor-pointer"
                   title="Salin No Referensi"
                 >
                   {copiedField === 'ref' ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
@@ -290,22 +290,22 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
               </div>
             </div>
 
-            <div className="flex justify-between items-center py-0.5">
+            <div className="flex justify-between items-center py-1">
               <span className="text-gray-500 font-medium">Metode Pembayaran</span>
               <span className="font-bold text-gray-800">{item.paymentMethod || 'QRIS Digital (GPN)'}</span>
             </div>
 
-            <div className="flex justify-between items-center py-0.5">
+            <div className="flex justify-between items-center py-1">
               <span className="text-gray-500 font-medium">Nominal Wakaf Pokok</span>
               <span className="font-bold text-gray-800">Rp {item.amount.toLocaleString('id-ID')}</span>
             </div>
 
-            <div className="flex justify-between items-center py-0.5">
+            <div className="flex justify-between items-center py-1">
               <span className="text-gray-500 font-medium">Biaya Administrasi & Layanan</span>
               <span className="font-bold text-emerald-700">Rp 0 (Gratis)</span>
             </div>
 
-            <div className="border-t border-dashed border-gray-200 pt-2.5 mt-2 flex justify-between items-center">
+            <div className="border-t border-dashed border-gray-200 pt-3 mt-2 flex justify-between items-center">
               <span className="font-bold text-sm text-gray-800">Total Pembayaran</span>
               <span className="font-extrabold text-base text-emerald-800">
                 Rp {item.amount.toLocaleString('id-ID')}
@@ -314,19 +314,19 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
           </div>
         </div>
 
-        {/* Syariah Ijab Qabul Card */}
-        <div className="bg-emerald-50/70 rounded-2xl border border-emerald-100 p-4 text-emerald-900 space-y-1.5">
+        {/* Syariah Ijab Qabul Section */}
+        <div className="bg-emerald-50/70 rounded-2xl p-4 text-emerald-900 space-y-1.5">
           <div className="flex items-center space-x-1.5 text-xs font-bold text-emerald-800">
             <ShieldCheck size={15} />
             <span>Akad Ijab Qabul Syariah</span>
           </div>
-          <p className="text-[11px] font-serif italic text-emerald-800/90 leading-relaxed">
+          <p className="text-[11px] font-serif italic text-emerald-850 leading-relaxed">
             "Saya menyatakan mewakafkan harta sejumlah Rp {item.amount.toLocaleString('id-ID')} secara ikhlas karena Allah Ta'ala untuk dikelola oleh Nazhir {item.nazhir || 'terkait'} sesuai peruntukan program {item.campaignTitle}."
           </p>
         </div>
 
         {/* Help / Support Section */}
-        <div className="p-3 bg-white rounded-2xl border border-gray-150 flex items-center justify-between">
+        <div className="p-3.5 bg-gray-50 rounded-2xl flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
             <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <HelpCircle size={17} />
@@ -338,7 +338,7 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
           </div>
           <button 
             onClick={() => handleCopy('support@serambiwakaf.id', 'cs')}
-            className="text-xs font-bold text-emerald-700 hover:text-emerald-800 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition"
+            className="text-xs font-bold text-emerald-700 hover:text-emerald-800 px-3 py-1.5 rounded-lg bg-white shadow-2xs hover:bg-gray-50 transition cursor-pointer"
           >
             {copiedField === 'cs' ? 'Tersalin!' : 'Hubungi CS'}
           </button>
@@ -347,10 +347,10 @@ export function HistoryDetailScreen({ navigate, item }: Props) {
       </div>
 
       {/* Floating Bottom Bar: Action Buttons */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-150 p-3.5 z-30 shadow-lg flex items-center space-x-3">
+      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-100 p-3.5 z-30 shadow-lg flex items-center space-x-3">
         <button
           onClick={() => navigate('history')}
-          className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-xl text-xs transition text-center"
+          className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-xl text-xs transition text-center cursor-pointer"
         >
           Kembali ke Riwayat
         </button>

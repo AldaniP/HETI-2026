@@ -15,6 +15,9 @@ import { HistoryDetailScreen } from './screens/HistoryDetailScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
 import { EduHubScreen } from './screens/EduHubScreen';
 import { EduDetailScreen } from './screens/EduDetailScreen';
+import { EduVideoScreen } from './screens/EduVideoScreen';
+import { NewsScreen } from './screens/NewsScreen';
+import { NewsDetailScreen } from './screens/NewsDetailScreen';
 import { WakafDetailScreen } from './screens/WakafDetailScreen';
 import { PaymentScreen } from './screens/PaymentScreen';
 import { NazhirScreen } from './screens/NazhirScreen';
@@ -35,6 +38,8 @@ import { PointsScreen } from './screens/PointsScreen';
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState<ScreenRoute>('login');
   const [selectedArticleId, setSelectedArticleId] = useState<string>('syariah_milenial');
+  const [selectedVideoId, setSelectedVideoId] = useState<string>('v1');
+  const [selectedNewsId, setSelectedNewsId] = useState<string>('bwi-wakaf-digital-2026');
   const [selectedHistoryItem, setSelectedHistoryItem] = useState<HistoryItem>(DEFAULT_HISTORY_DATA[0]);
   const [selectedNotification, setSelectedNotification] = useState<NotificationItem>(DEFAULT_NOTIFICATIONS[0]);
 
@@ -42,13 +47,16 @@ export default function App() {
     switch (currentRoute) {
       case 'login': return <LoginScreen navigate={setCurrentRoute} />;
       case 'register': return <RegisterScreen navigate={setCurrentRoute} />;
-      case 'home': return <HomeScreen navigate={setCurrentRoute} setSelectedArticleId={setSelectedArticleId} />;
+      case 'home': return <HomeScreen navigate={setCurrentRoute} setSelectedArticleId={setSelectedArticleId} setSelectedNewsId={setSelectedNewsId} />;
       case 'catalog': return <CatalogScreen navigate={setCurrentRoute} />;
       case 'history': return <HistoryScreen navigate={setCurrentRoute} onSelectItem={setSelectedHistoryItem} />;
       case 'history_detail': return <HistoryDetailScreen navigate={setCurrentRoute} item={selectedHistoryItem} />;
       case 'profile': return <ProfileScreen navigate={setCurrentRoute} />;
-      case 'edu_hub': return <EduHubScreen navigate={setCurrentRoute} setSelectedArticleId={setSelectedArticleId} />;
+      case 'edu_hub': return <EduHubScreen navigate={setCurrentRoute} setSelectedArticleId={setSelectedArticleId} setSelectedVideoId={setSelectedVideoId} />;
       case 'edu_detail': return <EduDetailScreen navigate={setCurrentRoute} articleId={selectedArticleId} />;
+      case 'edu_video': return <EduVideoScreen navigate={setCurrentRoute} videoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId} />;
+      case 'news': return <NewsScreen navigate={setCurrentRoute} setSelectedNewsId={setSelectedNewsId} />;
+      case 'news_detail': return <NewsDetailScreen navigate={setCurrentRoute} newsId={selectedNewsId} setSelectedNewsId={setSelectedNewsId} />;
       case 'wakaf_detail': return <WakafDetailScreen navigate={setCurrentRoute} />;
       case 'payment': return <PaymentScreen navigate={setCurrentRoute} />;
       case 'nazhir': return <NazhirScreen navigate={setCurrentRoute} />;

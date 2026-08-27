@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, HandHeart, Clock, User } from 'lucide-react';
+import { Home, HandHeart, Clock, BookOpen } from 'lucide-react';
 import { ScreenRoute } from '../types';
 
 interface BottomNavProps {
@@ -43,7 +43,7 @@ export function BottomNav({ currentRoute, navigate }: BottomNavProps) {
         onClick={() => navigate('edu_hub')}
         className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${currentRoute === 'edu_hub' ? 'text-green-600' : 'text-gray-500'}`}
       >
-        <User size={24} />
+        <BookOpen size={24} />
         <span className="text-[10px] font-medium">Edukasi</span>
       </button>
     </div>

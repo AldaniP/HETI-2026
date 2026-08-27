@@ -7,6 +7,9 @@ export type ScreenRoute =
   | 'history_detail'
   | 'edu_hub' 
   | 'edu_detail' 
+  | 'edu_video'
+  | 'news'
+  | 'news_detail'
   | 'wakaf_detail' 
   | 'payment' 
   | 'profile'
@@ -44,6 +47,20 @@ export interface EducationArticle {
   imageUrl: string;
   excerpt: string;
   content?: string;
+}
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  category: 'Kabar Wakaf' | 'Penyaluran' | 'Regulasi BWI' | 'Inspirasi Umat' | 'Ekonomi Syariah';
+  date: string;
+  readTime: string;
+  author: string;
+  imageUrl: string;
+  summary: string;
+  paragraphs: string[];
+  location?: string;
+  featured?: boolean;
 }
 
 export interface HistoryItem {
