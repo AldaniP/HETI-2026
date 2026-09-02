@@ -42,6 +42,7 @@ export default function App() {
   const [selectedNewsId, setSelectedNewsId] = useState<string>('bwi-wakaf-digital-2026');
   const [selectedHistoryItem, setSelectedHistoryItem] = useState<HistoryItem>(DEFAULT_HISTORY_DATA[0]);
   const [selectedNotification, setSelectedNotification] = useState<NotificationItem>(DEFAULT_NOTIFICATIONS[0]);
+  const [selectedDoc, setSelectedDoc] = useState<'rab' | 'usage' | 'legal'>('rab');
 
   const renderScreen = () => {
     switch (currentRoute) {
@@ -57,10 +58,10 @@ export default function App() {
       case 'edu_video': return <EduVideoScreen navigate={setCurrentRoute} videoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId} />;
       case 'news': return <NewsScreen navigate={setCurrentRoute} setSelectedNewsId={setSelectedNewsId} />;
       case 'news_detail': return <NewsDetailScreen navigate={setCurrentRoute} newsId={selectedNewsId} setSelectedNewsId={setSelectedNewsId} />;
-      case 'wakaf_detail': return <WakafDetailScreen navigate={setCurrentRoute} />;
+      case 'wakaf_detail': return <WakafDetailScreen navigate={setCurrentRoute} setSelectedDoc={setSelectedDoc} />;
       case 'payment': return <PaymentScreen navigate={setCurrentRoute} />;
       case 'nazhir': return <NazhirScreen navigate={setCurrentRoute} />;
-      case 'document': return <DocumentScreen navigate={setCurrentRoute} />;
+      case 'document': return <DocumentScreen navigate={setCurrentRoute} docType={selectedDoc} />;
       case 'payment_success': return <PaymentSuccessScreen navigate={setCurrentRoute} />;
       case 'notification': return <NotificationScreen navigate={setCurrentRoute} onSelectNotification={setSelectedNotification} />;
       case 'notification_detail': return <NotificationDetailScreen navigate={setCurrentRoute} notification={selectedNotification} />;

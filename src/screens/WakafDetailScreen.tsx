@@ -4,9 +4,10 @@ import { ScreenRoute } from '../types';
 
 interface Props {
   navigate: (route: ScreenRoute) => void;
+  setSelectedDoc?: (doc: 'rab' | 'usage' | 'legal') => void;
 }
 
-export function WakafDetailScreen({ navigate }: Props) {
+export function WakafDetailScreen({ navigate, setSelectedDoc }: Props) {
   return (
     <div className="flex-1 overflow-y-auto bg-gray-50 flex flex-col h-full relative">
       <div className="absolute top-0 left-0 right-0 p-4 flex items-center justify-between z-20">
@@ -110,11 +111,35 @@ export function WakafDetailScreen({ navigate }: Props) {
             
             <h3 className="font-bold text-lg text-gray-900 mb-3">Transparansi</h3>
             <div className="space-y-2">
-                <button onClick={() => navigate('document')} className="w-full text-left p-3 text-sm font-medium text-gray-700 bg-gray-50 rounded-lg flex justify-between hover:bg-gray-100">
-                    Rencana Anggaran Biaya (RAB) <ArrowLeft size={16} className="rotate-180 text-gray-400" />
+                <button 
+                    onClick={() => {
+                        setSelectedDoc?.('rab');
+                        navigate('document');
+                    }} 
+                    className="w-full text-left p-3.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-xl flex items-center justify-between hover:bg-gray-100 transition cursor-pointer"
+                >
+                    <span>Rencana Anggaran Biaya (RAB)</span>
+                    <ArrowLeft size={16} className="rotate-180 text-gray-400 shrink-0" />
                 </button>
-                <button onClick={() => navigate('document')} className="w-full text-left p-3 text-sm font-medium text-gray-700 bg-gray-50 rounded-lg flex justify-between hover:bg-gray-100">
-                    Legalitas Nazhir <ArrowLeft size={16} className="rotate-180 text-gray-400" />
+                <button 
+                    onClick={() => {
+                        setSelectedDoc?.('usage');
+                        navigate('document');
+                    }} 
+                    className="w-full text-left p-3.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-xl flex items-center justify-between hover:bg-gray-100 transition cursor-pointer"
+                >
+                    <span>Laporan Penggunaan Wakaf</span>
+                    <ArrowLeft size={16} className="rotate-180 text-gray-400 shrink-0" />
+                </button>
+                <button 
+                    onClick={() => {
+                        setSelectedDoc?.('legal');
+                        navigate('document');
+                    }} 
+                    className="w-full text-left p-3.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-xl flex items-center justify-between hover:bg-gray-100 transition cursor-pointer"
+                >
+                    <span>Legalitas Nazhir</span>
+                    <ArrowLeft size={16} className="rotate-180 text-gray-400 shrink-0" />
                 </button>
             </div>
         </div>
